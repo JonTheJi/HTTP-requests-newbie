@@ -40,7 +40,7 @@ public class RandomApi {
 			HttpURLConnection connection = (HttpURLConnection) new URL(GITURL).openConnection();
 			int responseCode = connection.getResponseCode();
 			if (responseCode == 200) {
-				System.out.println("good job newbie, you just made the connection from the api");
+				System.out.println("good job newbie, you just successfully made the connection to the api");
 			} else {
 				System.out.println("GG bro... sth went wrong");
 			}
