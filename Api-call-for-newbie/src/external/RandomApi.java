@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import jobs.Jobs;
+import jobs.Job;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,7 +28,7 @@ public class RandomApi {
 	}
 	
 	public void search (String description, String location, boolean fullTime) {
-		List<Jobs> result = new ArrayList<>();
+		List<Job> result = new ArrayList<>();
 		
 		// make sure the input have valid encoding
 		try {
@@ -65,7 +65,7 @@ public class RandomApi {
 			String arrString = response.toString();
 			JSONArray objArray = new JSONArray(arrString);
 			
-			
+			for () 
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
