@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class RandomApi {
 	private static final String GITURL = "https://jobs.github.com/positions.json";
@@ -19,12 +20,12 @@ public class RandomApi {
 		System.out.println("Hello newbie");
 		System.out.println("Lets have our first api call. This api is called GitHub Jobs");
 		RandomApi randomCall = new RandomApi(); 
-		List<String> result = randomCall.search("java", "", true);
+		randomCall.search("java", "", true);
 		
 		
 	}
 	
-	public List<String> search (String description, String location, boolean fullTime) {
+	public void search (String description, String location, boolean fullTime) {
 		List<String> result = new ArrayList<>();
 		try {
 			description = java.net.URLEncoder.encode(description, "UTF-8");
@@ -47,16 +48,18 @@ public class RandomApi {
 			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			
 			String inputLine;
-			
+			StringBuilder response = new StringBuilder();
 			while ((inputLine = in.readLine()) != null) {
-				result.add(inputLine);
+				response.append(inputLine);
 			}
 			in.close(); // close the stream
 			connection.disconnect(); // disconnection from the api
+			
+			JSONObject obj = new JSONObject(response.toString());
+			
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
-		return result;
 	}
 }
