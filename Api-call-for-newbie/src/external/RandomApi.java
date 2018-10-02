@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import org.json.JSONException;
+import jobs.Jobs;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class RandomApi {
@@ -38,7 +40,7 @@ public class RandomApi {
 		String query = String.format("description=%s&full_time=%s", description, fullTime);
 		
 		try {
-			HttpURLConnection connection = (HttpURLConnection) new URL(GITURL).openConnection();
+			HttpURLConnection connection = (HttpURLConnection) new URL(GITURL + "?" + query).openConnection();
 			int responseCode = connection.getResponseCode();
 			if (responseCode == 200) {
 				System.out.println("good job newbie, you just successfully made the connection to the api");
@@ -46,7 +48,6 @@ public class RandomApi {
 				System.out.println("GG bro... sth went wrong");
 			}
 			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			
 			String inputLine;
 			StringBuilder response = new StringBuilder();
 			while ((inputLine = in.readLine()) != null) {
@@ -54,8 +55,8 @@ public class RandomApi {
 			}
 			in.close(); // close the stream
 			connection.disconnect(); // disconnection from the api
-			
-			JSONObject obj = new JSONObject(response.toString());
+			String arrString = response.toString();
+			JSONArray objArray = new JSONArray(arrString);
 			
 			
 		} catch (Exception e) {

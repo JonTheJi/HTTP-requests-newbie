@@ -7,10 +7,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="Lib/java-json.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="/home/johnjiangtw0804/git/Api-for-newbie-repo/Api-call-for-newbie/Lib/java-json.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
