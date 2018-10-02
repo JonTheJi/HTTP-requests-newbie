@@ -28,7 +28,9 @@ public class RandomApi {
 	}
 	
 	public void search (String description, String location, boolean fullTime) {
-		List<String> result = new ArrayList<>();
+		List<Jobs> result = new ArrayList<>();
+		
+		// make sure the input have valid encoding
 		try {
 			description = java.net.URLEncoder.encode(description, "UTF-8");
 			location = java.net.URLEncoder.encode(location, "UTF-8");
@@ -47,6 +49,8 @@ public class RandomApi {
 			} else {
 				System.out.println("GG bro... sth went wrong");
 			}
+			
+			// Read one line at once using buffer reader (faster)
 			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String inputLine;
 			StringBuilder response = new StringBuilder();
@@ -55,8 +59,12 @@ public class RandomApi {
 			}
 			in.close(); // close the stream
 			connection.disconnect(); // disconnection from the api
+			
+			// now I want to store the data into Jobs data type that I created
+			
 			String arrString = response.toString();
 			JSONArray objArray = new JSONArray(arrString);
+			
 			
 			
 		} catch (Exception e) {
