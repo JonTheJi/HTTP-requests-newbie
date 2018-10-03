@@ -19,14 +19,22 @@ public class RandomApi {
 	private static final String GITURL = "https://jobs.github.com/positions.json";
 	
 	public static void main(String[] args) {
-
+		
 		System.out.println("Hello newbie");
 		System.out.println("Lets have our first api call. This api is called GitHub Jobs");
 		RandomApi randomCall = new RandomApi(); 
 		List<Job> result = randomCall.search("java", "", true);
 		
-		System.out.println(result.size());
+		// System.out.println(result.size());
 		
+		if (result.size() >= 50) {
+			System.out.println("\nYou have a good chance to get your job \nthere are more than 50 jobs out there");
+		} else if (result.size() >= 30){
+			System.out.println("\nyou might get hired");
+		} else {
+			System.out.println("\nYou are becoming a homeless");
+		}
+		System.out.println("\n\n<--- The end of the newbiew projoec --->");
 	}	
 	
 	public List<Job> search (String description, String location, boolean fullTime) {
@@ -47,7 +55,7 @@ public class RandomApi {
 			HttpURLConnection connection = (HttpURLConnection) new URL(GITURL + "?" + query).openConnection();
 			int responseCode = connection.getResponseCode();
 			if (responseCode == 200) {
-				System.out.println("good job newbie, you just successfully made the connection to the api");
+				System.out.println("\ngood job newbie >>> Successfully made a connection to the api >>>");
 			} else {
 				System.out.println("GG bro... sth went wrong");
 			}
