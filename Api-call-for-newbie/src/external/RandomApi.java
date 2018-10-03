@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import jobs.Job;
+import jobs.Job.JobBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,12 +23,13 @@ public class RandomApi {
 		System.out.println("Hello newbie");
 		System.out.println("Lets have our first api call. This api is called GitHub Jobs");
 		RandomApi randomCall = new RandomApi(); 
-		randomCall.search("java", "", true);
+		List<Job> result = randomCall.search("java", "", true);
 		
+		System.out.println(result.size());
 		
-	}
+	}	
 	
-	public void search (String description, String location, boolean fullTime) {
+	public List<Job> search (String description, String location, boolean fullTime) {
 		List<Job> result = new ArrayList<>();
 		
 		// make sure the input have valid encoding
@@ -64,11 +66,29 @@ public class RandomApi {
 			
 			String arrString = response.toString();
 			JSONArray objArray = new JSONArray(arrString);
-			
-			for () 
-			
+			int length = objArray.length();
+			for (int i = 0; i < length; i++) {
+				JSONObject obj = objArray.getJSONObject(i);
+				JobBuilder builder = new JobBuilder();
+				
+				if (!obj.isNull("id")) {
+					builder.setId(obj.getString("id"));
+				}
+				if (!obj.isNull("url")) {
+					builder.setUrl(obj.getString("url"));
+				}
+				if (!obj.isNull("company")) {
+					builder.setCompany(obj.getString("company"));
+				}
+				if (!obj.isNull("title")) {
+					builder.setTitle(obj.getString("title"));
+				}
+				
+				result.add(builder.build());
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		return result;
 	}
 }
