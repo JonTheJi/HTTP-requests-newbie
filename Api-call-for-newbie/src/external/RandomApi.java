@@ -57,7 +57,7 @@ public class RandomApi {
 			if (responseCode == 200) {
 				System.out.println("\ngood job newbie >>> Successfully made a connection to the api >>>");
 			} else {
-				System.out.println("GG bro... sth went wrong");
+				System.out.println("GG bro... something went wrong. Response code is not 200");
 			}
 			
 			// Read one line at once using buffer reader (faster)
